@@ -1,0 +1,38 @@
+{
+    "name": "laravel-enso/multitenancy",
+    "description": "User actions logger dependency for Laravel Enso",
+    "keywords": [
+        "laravel",
+        "laravel-enso",
+        "multitenancy",
+        "middleware"
+    ],
+    "homepage": "https://github.com/laravel-enso/Multitenancy",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "laravel-enso/core": "3.6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelEnso\\Multitenancy\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\Multitenancy\\AppServiceProvider"
+            ],
+            "aliases": {}
+        }
+    }
+}
