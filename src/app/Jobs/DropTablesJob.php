@@ -26,10 +26,10 @@ class DropTablesJob implements ShouldQueue
 
     public function handle()
     {
-        Tenant::set($company);
+        Tenant::set($this->tenant);
 
         DB::connection('tenant')
             ->getSchemaBuilder()
-            ->dropSchema();
+            ->dropAllTables();
     }
 }

@@ -14,7 +14,7 @@ class DropTables extends Command
 
     public function handle()
     {
-        $company = Company::find($this->option->argument('tenantId'));
+        $company = Company::find($this->argument('tenantId'));
 
         if ($company) {
             DropTablesJob::dispatch($company);
@@ -22,7 +22,7 @@ class DropTables extends Command
             return;
         }
 
-        if ($this->option->argument('tenantId') === '*') {
+        if ($this->argument('tenantId') === 'all') {
             Company::tenants()->get()
                 ->each(function ($company) {
                     DropTablesJob::dispatch($company);
@@ -31,8 +31,6 @@ class DropTables extends Command
             return;
         }
 
-        $this->error('The provided argument ":argument" is not valid', [
-            'argument' => $this->option->argument('tenantId')
-        ]);
+        $this->error('The provided argument is not valid');
     }
 }

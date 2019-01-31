@@ -29,8 +29,6 @@ class DropDatabaseJob implements ShouldQueue
     {
         Tenant::set($this->tenant);
 
-        DB::statement('DROP DATABASE :db', [
-            'db' => $this->tenantDatabase(),
-        ]);
+        DB::statement('DROP DATABASE '. $this->tenantDatabase());
     }
 }

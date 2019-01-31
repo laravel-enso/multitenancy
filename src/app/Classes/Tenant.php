@@ -8,12 +8,12 @@ use LaravelEnso\Companies\app\Models\Company;
 
 class Tenant
 {
+    private static $tenantPrefix;
+
     public static function set(Company $company)
     {
-        $tenantPrefix = config('database.connections.tenant.database');
-
         config([
-            'database.connections.tenant.database' => $tenantPrefix.$company->id
+            'database.connections.tenant.database' => self::tenantPrefix().$company->id
         ]);
 
         DB::purge('tenant');
@@ -29,7 +29,23 @@ class Tenant
     private static function tenantId()
     {
         return (int) Str::replaceFirst(
-            'tenant', '', config('database.connections.tenant.database')
+            'tenant',
+            '',
+            self::tenantDatabase()
         );
+    }
+
+    private static function tenantDatabase()
+    {
+        return config('database.connections.tenant.database');
+    }
+
+    private static function tenantPrefix()
+    {
+        if (!isset(self::$tenantPrefix)) {
+            self::$tenantPrefix = self::tenantDatabase();
+        }
+
+        return self::$tenantPrefix;
     }
 }

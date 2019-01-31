@@ -15,7 +15,7 @@ class Migrate extends Command
     public function handle()
     {
         Company::tenants()->get()
-            ->each(function ($company) use ($tenantDatabase) {
+            ->each(function ($company) {
                 MigrateJob::dispatch($company);
             });
     }

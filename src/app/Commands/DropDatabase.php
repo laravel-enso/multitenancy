@@ -17,7 +17,7 @@ class DropDatabase extends Command
 
     public function handle()
     {
-        if ($this->option->argument('tenantId') === '*') {
+        if ($this->argument('tenantId') === 'all') {
             Company::tenants()->get()
                 ->each(function ($company) {
                     DropDatabaseJob::dispatch($company);
@@ -26,7 +26,7 @@ class DropDatabase extends Command
             return;
         }
 
-        $company = Company::find($this->option->argument('tenantId'));
+        $company = Company::find($this->argument('tenantId'));
 
         if ($company) {
             DropDatabaseJob::dispatch($company);
@@ -34,8 +34,6 @@ class DropDatabase extends Command
             return;
         }
 
-        $this->error('The provided argument ":argument" is not valid', [
-            'argument' => $this->option->argument('tenantId')
-        ]);
+        $this->error('The provided argument is not valid');
     }
 }

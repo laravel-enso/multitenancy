@@ -14,7 +14,17 @@ class CreateDatabase extends Command
 
     public function handle()
     {
-        $company = Company::find($this->option->argument('tenantId'));
+        if ($this->argument('tenantId') === 'all') {
+            Company::tenants()->get()
+                ->each(function ($company) {
+                    CreateDatabaseJob::dispatch($company);
+                });
+
+            return;
+        }
+
+
+        $company = Company::find($this->argument('tenantId'));
 
         if ($company) {
             CreateDatabaseJob::dispatch($company);
@@ -22,8 +32,6 @@ class CreateDatabase extends Command
             return;
         }
 
-        $this->error('The provided argument ":argument" is not valid', [
-            'argument' => $this->option->argument('tenantId')
-        ]);
+        $this->error('The provided argument is not valid');
     }
 }
