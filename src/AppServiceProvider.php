@@ -3,14 +3,26 @@
 namespace LaravelEnso\Multitenancy;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelEnso\Multitenancy\app\Commands\Migrate;
+use LaravelEnso\Multitenancy\app\Commands\DropTables;
+use LaravelEnso\Multitenancy\app\Commands\DropDatabase;
+use LaravelEnso\Multitenancy\app\Commands\CreateDatabase;
+use LaravelEnso\Multitenancy\app\Http\Middleware\Multitenancy;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->commands([
+            CreateDatabase::class,
+            DropDatabase::class,
+            DropTables::class,
+            Migrate::class,
+        ]);
+
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
-        $this->app['router']->middleware('multitenancy', Multitinancy::class);
+        $this->app['router']->middleware('multitenancy', Multitenancy::class);
     }
 
     public function register()
