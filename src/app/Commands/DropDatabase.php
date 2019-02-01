@@ -11,7 +11,7 @@ class DropDatabase extends Command
 {
     use TenantResolver;
 
-    protected $signature = 'enso:tenant:drop-database {tenantId?}';
+    protected $signature = 'enso:tenant:drop-database {tenantId}';
 
     protected $description = 'Drops tenant database(s)';
 

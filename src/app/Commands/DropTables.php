@@ -8,7 +8,7 @@ use LaravelEnso\Multitenancy\app\Jobs\DropTablesJob;
 
 class DropTables extends Command
 {
-    protected $signature = 'enso:tenant:drop-tables {tenantId?}';
+    protected $signature = 'enso:tenant:drop-tables {tenantId}';
 
     protected $description = 'Drops all tables from tenant database(s)';
 
