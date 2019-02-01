@@ -20,9 +20,10 @@ class AppServiceProvider extends ServiceProvider
             Migrate::class,
         ]);
 
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-
-        $this->app['router']->middleware('multitenancy', Multitenancy::class);
+        $this->app['router']->aliasMiddleware(
+            'multitenancy',
+            Multitenancy::class
+        );
     }
 
     public function register()
