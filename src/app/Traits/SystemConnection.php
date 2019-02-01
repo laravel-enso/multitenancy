@@ -8,7 +8,7 @@ trait SystemConnection
     {
         parent::__construct($attributes);
 
-        $this->connection = config('app.env') === 'testing'
+        $this->connection = app()->environment('testing')
             ? 'sqlite'
             : 'system';
     }
