@@ -30,7 +30,7 @@ class MigrateJob implements ShouldQueue
 
         Artisan::call('migrate', [
             '--database' => 'tenant',
-            '--path' => '/database/migrations/tenant'
+            '--path' => '/database/migrations/tenant',
         ]);
     }
 }
