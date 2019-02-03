@@ -1,7 +1,7 @@
 # Multitenancy
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dc3819bf2c654b3d8dcaaed8898b214f)](https://www.codacy.com/app/laravel-enso/ActionLogger?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/ActionLogger&amp;utm_campaign=Badge_Grade)
-[![StyleCI](https://styleci.io/repos/85554059/shield?branch=master)](https://styleci.io/repos/85554059)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f7d99c7ba82d4001898ec556b22560fb)](https://www.codacy.com/app/laravel-enso/multitenancy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/multitenancy&amp;utm_campaign=Badge_Grade)
+[![StyleCI](https://github.styleci.io/repos/168164630/shield?branch=master)](https://github.styleci.io/repos/168164630)
 [![License](https://poser.pugx.org/laravel-enso/multitenancy/license)](https://packagist.org/packages/laravel-enso/multitenancy)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/multitenancy/downloads)](https://packagist.org/packages/laravel-enso/multitenancy)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/multitenancy/version)](https://packagist.org/packages/laravel-enso/multitenancy)
