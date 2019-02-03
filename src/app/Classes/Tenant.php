@@ -13,7 +13,7 @@ class Tenant
     public static function set(Company $company)
     {
         config([
-            'database.connections.tenant.database' => self::tenantPrefix().$company->id
+            'database.connections.tenant.database' => self::tenantPrefix().$company->id,
         ]);
 
         DB::purge('tenant');
@@ -42,7 +42,7 @@ class Tenant
 
     private static function tenantPrefix()
     {
-        if (!isset(self::$tenantPrefix)) {
+        if (! isset(self::$tenantPrefix)) {
             self::$tenantPrefix = self::tenantDatabase();
         }
 

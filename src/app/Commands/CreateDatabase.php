@@ -23,7 +23,6 @@ class CreateDatabase extends Command
             return;
         }
 
-
         $company = Company::find($this->argument('tenantId'));
 
         if ($company) {

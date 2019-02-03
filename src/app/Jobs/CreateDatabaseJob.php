@@ -29,6 +29,6 @@ class CreateDatabaseJob implements ShouldQueue
     {
         Tenant::set($this->tenant);
 
-        DB::statement('CREATE DATABASE '. $this->tenantDatabase());
+        DB::statement('CREATE DATABASE '.$this->tenantDatabase());
     }
 }
