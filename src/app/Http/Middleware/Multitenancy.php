@@ -9,7 +9,7 @@ class Multitenancy
 {
     public function handle($request, Closure $next)
     {
-        $company = $request->user()->company();
+        $company = optional($request->user())->company();
 
         if (optional($company)->isTenant()) {
             Tenant::set($company);
