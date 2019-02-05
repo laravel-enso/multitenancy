@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use LaravelEnso\Companies\app\Models\Company;
 use LaravelEnso\Multitenancy\app\Classes\Tenant;
+use LaravelEnso\Multitenancy\app\Classes\Connections;
 
 class DropTablesJob implements ShouldQueue
 {
@@ -28,7 +29,7 @@ class DropTablesJob implements ShouldQueue
     {
         Tenant::set($this->tenant);
 
-        DB::connection('tenant')
+        DB::connection(Connections::Tenant)
             ->getSchemaBuilder()
             ->dropAllTables();
     }

@@ -13,12 +13,12 @@ class Tenant
     public static function set(Company $company)
     {
         config([
-            'database.connections.tenant.database' => self::tenantPrefix().$company->id,
+            'database.connections.'.Connections::Tenant.'.database' => self::tenantPrefix().$company->id,
         ]);
 
-        DB::purge('tenant');
+        DB::purge(Connections::Tenant);
 
-        DB::reconnect('tenant');
+        DB::reconnect(Connections::Tenant);
     }
 
     public static function get()
@@ -29,15 +29,13 @@ class Tenant
     private static function tenantId()
     {
         return (int) Str::replaceFirst(
-            'tenant',
-            '',
-            self::tenantDatabase()
+            Connections::Tenant, '', self::tenantDatabase()
         );
     }
 
-    private static function tenantDatabase()
+    public static function tenantDatabase()
     {
-        return config('database.connections.tenant.database');
+        return config('database.connections.'.Connections::Tenant.'.database');
     }
 
     private static function tenantPrefix()

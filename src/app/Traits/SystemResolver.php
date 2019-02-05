@@ -2,6 +2,8 @@
 
 namespace LaravelEnso\Multitenancy\app\Traits;
 
+use LaravelEnso\Multitenancy\app\Classes\Connections;
+
 trait SystemResolver
 {
     public function systemTable(string $table)
@@ -11,7 +13,7 @@ trait SystemResolver
 
     public function systemDatabase()
     {
-        return \DB::connection('system')
+        return \DB::connection(Connections::System)
             ->getDatabaseName();
     }
 }

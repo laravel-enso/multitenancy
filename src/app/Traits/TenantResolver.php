@@ -2,6 +2,8 @@
 
 namespace LaravelEnso\Multitenancy\app\Traits;
 
+use LaravelEnso\Multitenancy\app\Classes\Connections;
+
 trait TenantResolver
 {
     public function tenantTable(string $table)
@@ -11,7 +13,7 @@ trait TenantResolver
 
     public function tenantDatabase()
     {
-        return \DB::connection('tenant')
+        return \DB::connection(Connections::Tenant)
             ->getDatabaseName();
     }
 }

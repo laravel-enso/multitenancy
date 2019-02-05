@@ -4,17 +4,17 @@ namespace LaravelEnso\Multitenancy\app\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use LaravelEnso\Companies\app\Models\Company;
 use LaravelEnso\Multitenancy\app\Classes\Tenant;
-use LaravelEnso\Multitenancy\app\Classes\Connections;
+use LaravelEnso\Multitenancy\app\Traits\ConnectionStoragePath;
 
-class MigrateJob implements ShouldQueue
+class ClearStorageJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, ConnectionStoragePath;
 
     private $tenant;
 
@@ -29,9 +29,6 @@ class MigrateJob implements ShouldQueue
     {
         Tenant::set($this->tenant);
 
-        Artisan::call('migrate', [
-            '--database' => Connections::Tenant,
-            '--path' => '/database/migrations/tenant',
-        ]);
+        Storage::deleteDirectory($this->tenantPath());
     }
 }

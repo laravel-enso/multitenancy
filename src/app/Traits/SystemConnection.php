@@ -2,14 +2,16 @@
 
 namespace LaravelEnso\Multitenancy\app\Traits;
 
+use LaravelEnso\Multitenancy\app\Classes\Connections;
+
 trait SystemConnection
 {
-    public function __construct($attributes = [])
+    public function __construct()
     {
-        parent::__construct($attributes);
+        parent::__construct(...func_get_args());
 
         $this->connection = app()->environment('testing')
-            ? 'sqlite'
-            : 'system';
+            ? Connections::Testing
+            : Connections::System;
     }
 }
