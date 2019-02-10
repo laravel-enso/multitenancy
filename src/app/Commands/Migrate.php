@@ -5,6 +5,7 @@ namespace LaravelEnso\Multitenancy\app\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use LaravelEnso\Companies\app\Models\Company;
+use LaravelEnso\Multitenancy\app\Classes\Tenant;
 use LaravelEnso\Multitenancy\app\Classes\Connections;
 
 class Migrate extends Command
