@@ -3,8 +3,9 @@
 namespace LaravelEnso\Multitenancy\app\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Jobs\MigrateJob;
+use LaravelEnso\Multitenancy\app\Classes\Connections;
 
 class Migrate extends Command
 {
@@ -16,7 +17,13 @@ class Migrate extends Command
     {
         Company::tenants()->get()
             ->each(function ($company) {
-                MigrateJob::dispatch($company);
+                Tenant::set($this->tenant);
+
+                Artisan::call('migrate', [
+                    '--database' => Connections::Tenant,
+                    '--path' => '/database/migrations/tenant',
+                    '--force' => true,
+                ]);
             });
     }
 }

@@ -22,7 +22,7 @@ class MigrateJob implements ShouldQueue
     {
         $this->tenant = $tenant;
 
-        $this->queue = 'light';
+        $this->queue = 'sync';
     }
 
     public function handle()
