@@ -18,7 +18,7 @@ class Migrate extends Command
     {
         Company::tenants()->get()
             ->each(function ($company) {
-                Tenant::set($this->tenant);
+                Tenant::set($company);
 
                 Artisan::call('migrate', [
                     '--database' => Connections::Tenant,
