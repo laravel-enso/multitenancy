@@ -14,21 +14,16 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->commands([
+        $this->commands(
             CreateDatabase::class,
             DropDatabase::class,
             ClearStorage::class,
             DropTables::class,
-            Migrate::class,
-        ]);
+            Migrate::class
+        );
 
         $this->app['router']->aliasMiddleware(
             'multitenancy', Multitenancy::class
         );
-    }
-
-    public function register()
-    {
-        //
     }
 }
