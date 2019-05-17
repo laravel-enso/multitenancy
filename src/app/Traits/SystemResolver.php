@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Multitenancy\app\Traits;
 
+use Illuminate\Support\Facades\DB;
 use LaravelEnso\Multitenancy\app\Classes\Connections;
 
 trait SystemResolver
@@ -13,7 +14,7 @@ trait SystemResolver
 
     public function systemDatabase()
     {
-        return \DB::connection(Connections::System)
+        return DB::connection(Connections::System)
             ->getDatabaseName();
     }
 }

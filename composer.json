@@ -7,7 +7,7 @@
         "multitenancy",
         "middleware"
     ],
-    "homepage": "https://github.com/laravel-enso/Multitenancy",
+    "homepage": "https://github.com/laravel-enso/multitenancy",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -20,8 +20,8 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/core": "4.2.*",
-        "laravel-enso/companies": "2.0.*"
+        "laravel-enso/core": "4.3.*",
+        "laravel-enso/companies": "2.1.*"
     },
     "autoload": {
         "psr-4": {

@@ -9,14 +9,14 @@ trait ConnectionStoragePath
     public function storagePath($folder)
     {
         return $this->hasTenantConnection()
-            ? config('enso.config.paths.'.$folder)
+            ? config('enso.files.paths.'.$folder)
             : $this->tenantPath().DIRECTORY_SEPARATOR
-                .config('enso.config.paths.'.$folder);
+                .config('enso.files.paths.'.$folder);
     }
 
     public function tenantPath()
     {
-        return config('enso.config.paths.tenants')
+        return config('enso.files.paths.tenants')
             .DIRECTORY_SEPARATOR
             .Tenant::tenantDatabase();
     }

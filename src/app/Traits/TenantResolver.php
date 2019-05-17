@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Multitenancy\app\Traits;
 
+use Illuminate\Support\Facades\DB;
 use LaravelEnso\Multitenancy\app\Classes\Connections;
 
 trait TenantResolver
@@ -13,7 +14,7 @@ trait TenantResolver
 
     public function tenantDatabase()
     {
-        return \DB::connection(Connections::Tenant)
+        return DB::connection(Connections::Tenant)
             ->getDatabaseName();
     }
 }
