@@ -3,7 +3,7 @@
 namespace LaravelEnso\Multitenancy\app\Traits;
 
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Multitenancy\app\Classes\Connections;
+use LaravelEnso\Multitenancy\app\Enums\Connections;
 
 trait TenantResolver
 {

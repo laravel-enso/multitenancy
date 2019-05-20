@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Classes;
+namespace LaravelEnso\Multitenancy\app\Enums;
 
 use LaravelEnso\Helpers\app\Classes\Enum;
 

@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Multitenancy\app\Traits;
 
-use LaravelEnso\Multitenancy\app\Classes\Tenant;
+use LaravelEnso\Multitenancy\app\Services\Tenant;
 
 trait ConnectionStoragePath
 {

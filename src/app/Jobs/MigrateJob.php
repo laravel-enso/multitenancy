@@ -9,8 +9,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Classes\Tenant;
-use LaravelEnso\Multitenancy\app\Classes\Connections;
+use LaravelEnso\Multitenancy\app\Services\Tenant;
+use LaravelEnso\Multitenancy\app\Enums\Connections;
 
 class MigrateJob implements ShouldQueue
 {

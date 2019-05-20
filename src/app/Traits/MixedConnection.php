@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Multitenancy\app\Traits;
 
-use LaravelEnso\Multitenancy\app\Classes\Connections;
+use LaravelEnso\Multitenancy\app\Enums\Connections;
 
 trait MixedConnection
 {
