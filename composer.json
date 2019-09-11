@@ -20,8 +20,9 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/core": "4.3.*",
-        "laravel-enso/companies": "2.1.*"
+        "laravel-enso/companies": "2.2.*",
+        "laravel-enso/core": "4.4.*",
+        "laravel-enso/enums": "1.0.*"
     },
     "autoload": {
         "psr-4": {
