@@ -22,7 +22,7 @@
         "php": ">=7.1.0",
         "laravel-enso/companies": "2.2.*",
         "laravel-enso/core": "4.4.*",
-        "laravel-enso/enums": "1.0.*"
+        "laravel-enso/enums": "1.1.*"
     },
     "autoload": {
         "psr-4": {
