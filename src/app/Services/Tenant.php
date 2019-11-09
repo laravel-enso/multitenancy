@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\Multitenancy\app\Services;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use LaravelEnso\Companies\app\Models\Company;
 use LaravelEnso\Multitenancy\app\Enums\Connections;
 
