@@ -27,16 +27,16 @@ class Tenant
         return Company::find(self::tenantId());
     }
 
+    public static function tenantDatabase()
+    {
+        return config('database.connections.'.Connections::Tenant.'.database');
+    }
+
     private static function tenantId()
     {
         return (int) Str::replaceFirst(
             Connections::Tenant, '', self::tenantDatabase()
         );
-    }
-
-    public static function tenantDatabase()
-    {
-        return config('database.connections.'.Connections::Tenant.'.database');
     }
 
     private static function tenantPrefix()
