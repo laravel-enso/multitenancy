@@ -19,9 +19,7 @@ class DropDatabase extends Command
     {
         if ($this->argument('tenantId') === 'all') {
             Company::tenants()->get()
-                ->each(function ($company) {
-                    DropDatabaseJob::dispatch($company);
-                });
+                ->each(fn($company) => DropDatabaseJob::dispatch($company));
 
             return;
         }

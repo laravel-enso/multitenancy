@@ -19,9 +19,7 @@ class ClearStorage extends Command
     {
         if ($this->argument('tenantId') === 'all') {
             Company::tenants()->get()
-                ->each(function ($company) {
-                    ClearStorageJob::dispatch($company);
-                });
+                ->each(fn($company) => ClearStorageJob::dispatch($company));
 
             return;
         }

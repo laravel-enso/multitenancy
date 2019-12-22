@@ -24,9 +24,7 @@ class DropTables extends Command
 
         if ($this->argument('tenantId') === 'all') {
             Company::tenants()->get()
-                ->each(function ($company) {
-                    DropTablesJob::dispatch($company);
-                });
+                ->each(fn($company) => DropTablesJob::dispatch($company));
 
             return;
         }

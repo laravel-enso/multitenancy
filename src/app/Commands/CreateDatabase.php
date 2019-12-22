@@ -16,9 +16,7 @@ class CreateDatabase extends Command
     {
         if ($this->argument('tenantId') === 'all') {
             Company::tenants()->get()
-                ->each(function ($company) {
-                    CreateDatabaseJob::dispatch($company);
-                });
+                ->each(fn($company) => CreateDatabaseJob::dispatch($company));
 
             return;
         }
