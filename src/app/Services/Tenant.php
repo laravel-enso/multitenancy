@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Services;
+namespace LaravelEnso\Multitenancy\App\Services;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Enums\Connections;
+use Illuminate\Support\Str;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Enums\Connections;
 
 class Tenant
 {
@@ -13,9 +13,9 @@ class Tenant
 
     public static function set(Company $company)
     {
-        config([
-            'database.connections.'.Connections::Tenant.'.database' => self::tenantPrefix().$company->id,
-        ]);
+        $key = 'database.connections.'.Connections::Tenant.'.database';
+        $value = self::tenantPrefix().$company->id;
+        config([$key => $value]);
 
         DB::purge(Connections::Tenant);
 
@@ -27,16 +27,14 @@ class Tenant
         return Company::find(self::tenantId());
     }
 
-    private static function tenantId()
-    {
-        return (int) Str::replaceFirst(
-            Connections::Tenant, '', self::tenantDatabase()
-        );
-    }
-
     public static function tenantDatabase()
     {
         return config('database.connections.'.Connections::Tenant.'.database');
+    }
+
+    private static function tenantId()
+    {
+        return (int) Str::replaceFirst(Connections::Tenant, '', self::tenantDatabase());
     }
 
     private static function tenantPrefix()

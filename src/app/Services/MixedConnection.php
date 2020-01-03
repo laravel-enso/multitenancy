@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Services;
+namespace LaravelEnso\Multitenancy\App\Services;
 
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Multitenancy\app\Enums\Connections;
+use LaravelEnso\Multitenancy\App\Enums\Connections;
 
 class MixedConnection
 {
@@ -22,8 +22,8 @@ class MixedConnection
 
     private static function connection($connection)
     {
-        config([
-            'database.connections.'.Connections::Mixed => config('database.connections.'.$connection),
-        ]);
+        $key = 'database.connections.'.Connections::Mixed;
+        $value = config("database.connections.{$connection}");
+        config([$key => $value]);
     }
 }

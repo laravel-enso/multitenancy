@@ -1,30 +1,21 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Commands;
+namespace LaravelEnso\Multitenancy\App\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Services\Tenant;
-use LaravelEnso\Multitenancy\app\Enums\Connections;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Jobs\Migrate as Job;
 
 class Migrate extends Command
 {
-    protected $signature = 'enso:tenant:migrate';
+    protected $signature = 'enso:tenant:migrate {--all=false} {--tenantId}';
 
-    protected $description = 'Performs tenant migrations';
+    protected $description = 'Performs tenant(s) migrations';
 
-    public function handle()
+    public function dispatch(Company $company): void
     {
-        Company::tenants()->get()
-            ->each(function ($company) {
-                Tenant::set($company);
+        $this->line(__('Migrating tables for company :company', ['company' => $company->name]));
 
-                Artisan::call('migrate', [
-                    '--database' => Connections::Tenant,
-                    '--path' => '/database/migrations/tenant',
-                    '--force' => true,
-                ]);
-            });
+        Job::dispatch($company);
     }
 }

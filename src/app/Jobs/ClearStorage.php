@@ -1,18 +1,18 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Jobs;
+namespace LaravelEnso\Multitenancy\App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Services\Tenant;
-use LaravelEnso\Multitenancy\app\Traits\ConnectionStoragePath;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Services\Tenant;
+use LaravelEnso\Multitenancy\App\Traits\ConnectionStoragePath;
 
-class ClearStorageJob implements ShouldQueue
+class ClearStorage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, ConnectionStoragePath;
 

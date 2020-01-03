@@ -1,39 +1,20 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Commands;
+namespace LaravelEnso\Multitenancy\App\Commands;
 
-use Illuminate\Console\Command;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Jobs\DropDatabaseJob;
-use LaravelEnso\Multitenancy\app\Traits\TenantResolver;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Jobs\DropDatabase as Job;
 
-class DropDatabase extends Command
+class DropDatabase extends Tenant
 {
-    use TenantResolver;
-
-    protected $signature = 'enso:tenant:drop-database {tenantId}';
+    protected $signature = 'enso:tenant:drop-database {--all=false} {--tenantId}';
 
     protected $description = 'Drops tenant database(s)';
 
-    public function handle()
+    public function dispatch(Company $company): void
     {
-        if ($this->argument('tenantId') === 'all') {
-            Company::tenants()->get()
-                ->each(function ($company) {
-                    DropDatabaseJob::dispatch($company);
-                });
+        $this->line(__('Dropping database for company :company', ['company' => $company->name]));
 
-            return;
-        }
-
-        $company = Company::find($this->argument('tenantId'));
-
-        if ($company) {
-            DropDatabaseJob::dispatch($company);
-
-            return;
-        }
-
-        $this->error('The provided argument is not valid');
+        Job::dispatch($company);
     }
 }

@@ -1,36 +1,20 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Commands;
+namespace LaravelEnso\Multitenancy\App\Commands;
 
-use Illuminate\Console\Command;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Jobs\DropTablesJob;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Jobs\DropTables as Job;
 
-class DropTables extends Command
+class DropTables extends Tenant
 {
-    protected $signature = 'enso:tenant:drop-tables {tenantId}';
+    protected $signature = 'enso:tenant:drop-tables {--all=false} {--tenantId}';
 
     protected $description = 'Drops all tables from tenant database(s)';
 
-    public function handle()
+    public function dispatch(Company $company): void
     {
-        $company = Company::find($this->argument('tenantId'));
+        $this->line(__('Dropping tables for company :company', ['company' => $company->name]));
 
-        if ($company) {
-            DropTablesJob::dispatch($company);
-
-            return;
-        }
-
-        if ($this->argument('tenantId') === 'all') {
-            Company::tenants()->get()
-                ->each(function ($company) {
-                    DropTablesJob::dispatch($company);
-                });
-
-            return;
-        }
-
-        $this->error('The provided argument is not valid');
+        Job::dispatch($company);
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Http\Middleware;
+namespace LaravelEnso\Multitenancy\App\Http\Middleware;
 
 use Closure;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Services\Tenant;
-use LaravelEnso\Multitenancy\app\Services\MixedConnection;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Services\MixedConnection;
+use LaravelEnso\Multitenancy\App\Services\Tenant;
 
 class Multitenancy
 {
@@ -24,7 +24,8 @@ class Multitenancy
         }
 
         MixedConnection::set(
-            $request->user(), $request->has('_tenantId')
+            $request->user(),
+            $request->has('_tenantId')
         );
 
         if ($request->has('_tenantId')) {

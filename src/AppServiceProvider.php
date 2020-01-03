@@ -3,12 +3,12 @@
 namespace LaravelEnso\Multitenancy;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Multitenancy\app\Commands\Migrate;
-use LaravelEnso\Multitenancy\app\Commands\DropTables;
-use LaravelEnso\Multitenancy\app\Commands\ClearStorage;
-use LaravelEnso\Multitenancy\app\Commands\DropDatabase;
-use LaravelEnso\Multitenancy\app\Commands\CreateDatabase;
-use LaravelEnso\Multitenancy\app\Http\Middleware\Multitenancy;
+use LaravelEnso\Multitenancy\App\Commands\ClearStorage;
+use LaravelEnso\Multitenancy\App\Commands\CreateDatabase;
+use LaravelEnso\Multitenancy\App\Commands\DropDatabase;
+use LaravelEnso\Multitenancy\App\Commands\DropTables;
+use LaravelEnso\Multitenancy\App\Commands\Migrate;
+use LaravelEnso\Multitenancy\App\Http\Middleware\Multitenancy;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app['router']->aliasMiddleware(
-            'multitenancy', Multitenancy::class
+            'multitenancy',
+            Multitenancy::class
         );
     }
 }

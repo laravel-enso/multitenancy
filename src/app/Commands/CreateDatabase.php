@@ -1,36 +1,20 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Commands;
+namespace LaravelEnso\Multitenancy\App\Commands;
 
-use Illuminate\Console\Command;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Jobs\CreateDatabaseJob;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Jobs\CreateDatabase as Job;
 
-class CreateDatabase extends Command
+class CreateDatabase extends Tenant
 {
-    protected $signature = 'enso:tenant:create-database {tenantId}';
+    protected $signature = 'enso:tenant:create-database {--all=false} {--tenantId}';
 
     protected $description = 'Creates tenant database';
 
-    public function handle()
+    public function dispatch(Company $company): void
     {
-        if ($this->argument('tenantId') === 'all') {
-            Company::tenants()->get()
-                ->each(function ($company) {
-                    CreateDatabaseJob::dispatch($company);
-                });
+        $this->line(__('Creating database for company :company', ['company' => $company->name]));
 
-            return;
-        }
-
-        $company = Company::find($this->argument('tenantId'));
-
-        if ($company) {
-            CreateDatabaseJob::dispatch($company);
-
-            return;
-        }
-
-        $this->error('The provided argument is not valid');
+        Job::dispatch($company);
     }
 }

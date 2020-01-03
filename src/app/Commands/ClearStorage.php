@@ -1,39 +1,20 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Commands;
+namespace LaravelEnso\Multitenancy\App\Commands;
 
-use Illuminate\Console\Command;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Jobs\ClearStorageJob;
-use LaravelEnso\Multitenancy\app\Traits\ConnectionStoragePath;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Jobs\ClearStorage as Job;
 
-class ClearStorage extends Command
+class ClearStorage extends Tenant
 {
-    use ConnectionStoragePath;
-
-    protected $signature = 'enso:tenant:clear-storage {tenantId}';
+    protected $signature = 'enso:tenant:clear-storage {--all=false} {--tenantId}';
 
     protected $description = 'Clears tenant storage';
 
-    public function handle()
+    public function dispatch(Company $company): void
     {
-        if ($this->argument('tenantId') === 'all') {
-            Company::tenants()->get()
-                ->each(function ($company) {
-                    ClearStorageJob::dispatch($company);
-                });
+        $this->line(__('Clearing storage for company :company', ['company' => $company->name]));
 
-            return;
-        }
-
-        $company = Company::find($this->argument('tenantId'));
-
-        if ($company) {
-            ClearStorageJob::dispatch($company);
-
-            return;
-        }
-
-        $this->error('The provided argument is not valid');
+        Job::dispatch($company);
     }
 }

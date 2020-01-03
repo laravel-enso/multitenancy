@@ -1,18 +1,18 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Jobs;
+namespace LaravelEnso\Multitenancy\App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use LaravelEnso\Companies\app\Models\Company;
-use LaravelEnso\Multitenancy\app\Services\Tenant;
-use LaravelEnso\Multitenancy\app\Enums\Connections;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
+use LaravelEnso\Companies\App\Models\Company;
+use LaravelEnso\Multitenancy\App\Enums\Connections;
+use LaravelEnso\Multitenancy\App\Services\Tenant;
 
-class DropTablesJob implements ShouldQueue
+class DropTables implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

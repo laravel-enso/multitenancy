@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\app\Traits;
+namespace LaravelEnso\Multitenancy\App\Traits;
 
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Multitenancy\app\Enums\Connections;
+use LaravelEnso\Multitenancy\App\Enums\Connections;
 
 trait TenantResolver
 {
