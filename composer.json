@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "laravel-enso/companies": "2.5.*",
+        "laravel-enso/companies": "2.4.*",
         "laravel-enso/core": "4.7.*",
         "laravel-enso/enums": "1.2.*"
     },
