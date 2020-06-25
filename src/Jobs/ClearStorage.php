@@ -1,20 +1,20 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Jobs;
+namespace LaravelEnso\Multitenancy\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\DB;
-use LaravelEnso\Companies\App\Models\Company;
-use LaravelEnso\Multitenancy\App\Services\Tenant;
-use LaravelEnso\Multitenancy\App\Traits\TenantResolver;
+use Illuminate\Support\Facades\Storage;
+use LaravelEnso\Companies\Models\Company;
+use LaravelEnso\Multitenancy\Services\Tenant;
+use LaravelEnso\Multitenancy\Traits\ConnectionStoragePath;
 
-class CreateDatabase implements ShouldQueue
+class ClearStorage implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, TenantResolver;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, ConnectionStoragePath;
 
     private $tenant;
 
@@ -29,6 +29,6 @@ class CreateDatabase implements ShouldQueue
     {
         Tenant::set($this->tenant);
 
-        DB::statement('CREATE DATABASE '.$this->tenantDatabase());
+        Storage::deleteDirectory($this->tenantPath());
     }
 }

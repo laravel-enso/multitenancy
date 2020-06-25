@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Traits;
+namespace LaravelEnso\Multitenancy\Traits;
 
-use LaravelEnso\Multitenancy\App\Services\Tenant;
+use LaravelEnso\Multitenancy\Services\Tenant;
 
 trait ConnectionStoragePath
 {
@@ -11,7 +11,7 @@ trait ConnectionStoragePath
         return $this->hasTenantConnection()
             ? config('enso.files.paths.'.$folder)
             : $this->tenantPath().DIRECTORY_SEPARATOR
-                .config('enso.files.paths.'.$folder);
+            .config('enso.files.paths.'.$folder);
     }
 
     public function tenantPath()
