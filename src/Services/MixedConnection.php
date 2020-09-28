@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Services;
+namespace LaravelEnso\Multitenancy\Services;
 
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Multitenancy\App\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connections;
 
 class MixedConnection
 {

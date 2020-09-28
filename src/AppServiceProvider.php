@@ -3,12 +3,12 @@
 namespace LaravelEnso\Multitenancy;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Multitenancy\App\Commands\ClearStorage;
-use LaravelEnso\Multitenancy\App\Commands\CreateDatabase;
-use LaravelEnso\Multitenancy\App\Commands\DropDatabase;
-use LaravelEnso\Multitenancy\App\Commands\DropTables;
-use LaravelEnso\Multitenancy\App\Commands\Migrate;
-use LaravelEnso\Multitenancy\App\Http\Middleware\Multitenancy;
+use LaravelEnso\Multitenancy\Commands\ClearStorage;
+use LaravelEnso\Multitenancy\Commands\CreateDatabase;
+use LaravelEnso\Multitenancy\Commands\DropDatabase;
+use LaravelEnso\Multitenancy\Commands\DropTables;
+use LaravelEnso\Multitenancy\Commands\Migrate;
+use LaravelEnso\Multitenancy\Http\Middleware\Multitenancy;
 
 class AppServiceProvider extends ServiceProvider
 {

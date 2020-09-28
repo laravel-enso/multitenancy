@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Commands;
+namespace LaravelEnso\Multitenancy\Commands;
 
-use LaravelEnso\Companies\App\Models\Company;
-use LaravelEnso\Multitenancy\App\Jobs\CreateDatabase as Job;
+use LaravelEnso\Companies\Models\Company;
+use LaravelEnso\Multitenancy\Jobs\CreateDatabase as Job;
 
 class CreateDatabase extends Tenant
 {
