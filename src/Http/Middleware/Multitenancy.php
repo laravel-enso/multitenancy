@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Http\Middleware;
+namespace LaravelEnso\Multitenancy\Http\Middleware;
 
 use Closure;
-use LaravelEnso\Companies\App\Models\Company;
-use LaravelEnso\Multitenancy\App\Services\MixedConnection;
-use LaravelEnso\Multitenancy\App\Services\Tenant;
+use LaravelEnso\Companies\Models\Company;
+use LaravelEnso\Multitenancy\Services\MixedConnection;
+use LaravelEnso\Multitenancy\Services\Tenant;
 
 class Multitenancy
 {

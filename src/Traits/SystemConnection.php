@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Traits;
+namespace LaravelEnso\Multitenancy\Traits;
 
-use LaravelEnso\Multitenancy\App\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connections;
 
 trait SystemConnection
 {

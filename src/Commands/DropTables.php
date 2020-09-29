@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Commands;
+namespace LaravelEnso\Multitenancy\Commands;
 
-use LaravelEnso\Companies\App\Models\Company;
-use LaravelEnso\Multitenancy\App\Jobs\DropTables as Job;
+use LaravelEnso\Companies\Models\Company;
+use LaravelEnso\Multitenancy\Jobs\DropTables as Job;
 
 class DropTables extends Tenant
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Multitenancy\App\Commands;
+namespace LaravelEnso\Multitenancy\Commands;
 
 use Illuminate\Console\Command;
-use LaravelEnso\Companies\App\Models\Company;
-use LaravelEnso\Multitenancy\App\Jobs\Migrate as Job;
+use LaravelEnso\Companies\Models\Company;
+use LaravelEnso\Multitenancy\Jobs\Migrate as Job;
 
 class Migrate extends Command
 {
