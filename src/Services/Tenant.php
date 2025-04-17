@@ -5,7 +5,7 @@ namespace LaravelEnso\Multitenancy\Services;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use LaravelEnso\Companies\Models\Company;
-use LaravelEnso\Multitenancy\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connection;
 
 class Tenant
 {
@@ -13,13 +13,13 @@ class Tenant
 
     public static function set(Company $company)
     {
-        $key = 'database.connections.'.Connections::Tenant.'.database';
-        $value = self::tenantPrefix().$company->id;
+        $key = 'database.connections.' . Connection::Tenant->value . '.database';
+        $value = self::tenantPrefix() . $company->id;
         config([$key => $value]);
 
-        DB::purge(Connections::Tenant);
+        DB::purge(Connection::Tenant->value);
 
-        DB::reconnect(Connections::Tenant);
+        DB::reconnect(Connection::Tenant->value);
     }
 
     public static function get()
@@ -29,17 +29,17 @@ class Tenant
 
     public static function tenantDatabase()
     {
-        return config('database.connections.'.Connections::Tenant.'.database');
+        return config('database.connections.' . Connection::Tenant->value . '.database');
     }
 
     private static function tenantId()
     {
-        return (int) Str::replaceFirst(Connections::Tenant, '', self::tenantDatabase());
+        return (int) Str::replaceFirst(Connection::Tenant->value, '', self::tenantDatabase());
     }
 
     private static function tenantPrefix()
     {
-        if (! isset(self::$tenantPrefix)) {
+        if (!isset(self::$tenantPrefix)) {
             self::$tenantPrefix = self::tenantDatabase();
         }
 
