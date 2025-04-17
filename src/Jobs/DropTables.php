@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Companies\Models\Company;
-use LaravelEnso\Multitenancy\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connection;
 use LaravelEnso\Multitenancy\Services\Tenant;
 
 class DropTables implements ShouldQueue
@@ -29,7 +29,7 @@ class DropTables implements ShouldQueue
     {
         Tenant::set($this->tenant);
 
-        DB::connection(Connections::Tenant)
+        DB::connection(Connection::Tenant->value)
             ->getSchemaBuilder()
             ->dropAllTables();
     }

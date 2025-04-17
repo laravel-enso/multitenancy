@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Multitenancy\Traits;
 
-use LaravelEnso\Multitenancy\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connection;
 
 trait MixedConnection
 {
@@ -11,23 +11,23 @@ trait MixedConnection
         parent::__construct(...func_get_args());
 
         if (app()->environment('testing')) {
-            $this->connection = Connections::Testing;
+            $this->connection = Connection::Testing->value;
 
             return;
         }
 
-        $this->connection = empty(config('database.connections.'.Connections::Mixed))
-            ? Connections::System
-            : Connections::Mixed;
+        $this->connection = empty(config('database.connections.' . Connection::Mixed->value))
+            ? Connection::System->value
+            : Connection::Mixed->value;
     }
 
     public function hasTenantConnection()
     {
-        return $this->getConnection()->getName() === Connections::Tenant;
+        return $this->getConnection()->getName() === Connection::Tenant->value;
     }
 
     public function hasSystemConnection()
     {
-        return $this->getConnection()->getName() === Connections::System;
+        return $this->getConnection()->getName() === Connection::System->value;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Multitenancy\Traits;
 
-use LaravelEnso\Multitenancy\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connection;
 
 trait SystemConnection
 {
@@ -11,7 +11,7 @@ trait SystemConnection
         parent::__construct(...func_get_args());
 
         $this->connection = app()->environment('testing')
-            ? Connections::Testing
-            : Connections::System;
+            ? Connection::Testing->value
+            : Connection::System->value;
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Artisan;
 use LaravelEnso\Companies\Models\Company;
-use LaravelEnso\Multitenancy\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connection;
 use LaravelEnso\Multitenancy\Services\Tenant;
 
 class Migrate implements ShouldQueue
@@ -30,7 +30,7 @@ class Migrate implements ShouldQueue
         Tenant::set($this->tenant);
 
         Artisan::call('migrate', [
-            '--database' => Connections::Tenant,
+            '--database' => Connection::Tenant->value,
             '--path' => '/database/migrations/tenant',
             '--force' => true,
         ]);

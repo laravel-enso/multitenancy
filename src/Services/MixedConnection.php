@@ -3,26 +3,26 @@
 namespace LaravelEnso\Multitenancy\Services;
 
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Multitenancy\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connection;
 
 class MixedConnection
 {
     public static function set($user, $tenant)
     {
-        if (! $user->belongsToAdminGroup() || $tenant) {
-            self::connection(Connections::Tenant);
+        if (!$user->belongsToAdminGroup() || $tenant) {
+            self::connection(Connection::Tenant->value);
         } else {
-            self::connection(Connections::System);
+            self::connection(Connection::System->value);
         }
 
-        DB::purge(Connections::Mixed);
+        DB::purge(Connection::Mixed->value);
 
-        DB::reconnect(Connections::Mixed);
+        DB::reconnect(Connection::Mixed->value);
     }
 
     private static function connection($connection)
     {
-        $key = 'database.connections.'.Connections::Mixed;
+        $key = 'database.connections.' . Connection::Mixed->value;
         $value = config("database.connections.{$connection}");
         config([$key => $value]);
     }

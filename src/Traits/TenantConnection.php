@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Multitenancy\Traits;
 
-use LaravelEnso\Multitenancy\Enums\Connections;
+use LaravelEnso\Multitenancy\Enums\Connection;
 
 trait TenantConnection
 {
@@ -11,7 +11,7 @@ trait TenantConnection
         parent::__construct(...func_get_args());
 
         $this->connection = app()->environment('testing')
-            ? Connections::Testing
-            : Connections::Tenant;
+            ? Connection::Testing->value
+            : Connection::Tenant->value;
     }
 }
